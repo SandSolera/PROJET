@@ -6,8 +6,10 @@ import time
 
 import random
 
-from Asteroide.player import DrawPlayer
-from Asteroide.projectile import projectiles
+# from Asteroid.Ecran import Menu, Jeu, GameOver
+from Asteroid.Target import DrawTarget
+from Asteroid.player import DrawPlayer, Controle, Deplacement
+from Asteroid.projectile import CadenceTir, DrawProj
 
 
 def setup():
@@ -19,46 +21,43 @@ def setup():
     core.memory("vitesse", Vector2(1, 0))
     core.memory("projectiles", [])
     core.memory("target", (random.randint(0,750), random.randint(0,750), 50, 50))
+    core.memory("etat",0)
+
+
 def run():
 
     core.cleanScreen()
 
-    #Control
-
-    if core.getKeyPressList("z"):
-        core.memory("vitesse").scale_to_length(core.memory("vitesse").length()+0.5)
-
-    if core.getKeyPressList("d"):
-        core.memory("vitesse", core.memory("vitesse").rotate(10))
-
-    if core.getKeyPressList("q"):
-        core.memory("vitesse", core.memory("vitesse").rotate(-10))
-
-    if core.getKeyPressList("SPACE"):
-
-        if len(core.memory("projectiles"))>0:
-            if time.time()-core.memory("projectiles")[-1]["startTime"] > 1:
-                projectiles()
-        else:
-            projectiles()
+    # Ecran
+    # if core.memory("etat")==0:
+    #     Menu()
+    # if core.memory("etat")==1:
+    #     Jeu()
+    # if core.memory("etat")==2:
+    #     GameOver()
 
 
-    #Deplacement
 
-    core.memory("pos", core.memory("pos") + core.memory("vitesse"))
+
+
+    # Joueur
+
+    Deplacement()
+    Controle()
+    DrawPlayer()
 
     #Projectiles
-    for proj in core.memory("projectiles"):
-        core.Draw.circle(proj["couleur"],proj["position"],proj["rayon"])
 
-    for proj in core.memory("projectiles"):
-        proj["position"]=proj["position"]+proj["vitesse"]
+    CadenceTir()
+    DrawProj()
+    # Boost()
 
     #Target
-    core.Draw.rect((255, 0, 0), core.memory("target"))
 
+    DrawTarget()
+    # Collision()
 
-    #Dessin
+    #Joueur
 
     DrawPlayer()
 
