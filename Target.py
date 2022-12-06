@@ -11,8 +11,6 @@ def Target():
 
     core.memory("target", (x, y, l, h))
 
-    core.Draw.rect((255, 0, 0), core.memory("target"))
-
 def DrawTarget():
 
     core.Draw.rect((255, 0, 0), core.memory("target"))

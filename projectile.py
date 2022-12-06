@@ -4,7 +4,7 @@ from pygame.math import Vector2
 
 def projectiles():
     p = Vector2(core.memory("pos"))
-    v=Vector2(core.memory("vitesse"))
+    v=Vector2(core.memory("Direction"))
     v.scale_to_length(core.memory("vitesse").length()+5)
     r=5
     c=(255,255,255)
