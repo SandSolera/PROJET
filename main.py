@@ -19,7 +19,6 @@ def setup():
 
     core.memory("pos", Vector2(400, 400))
     core.memory("vitesse", Vector2(1, 0))
-    core.memory("vitesseLente", Vector2(0, 0))
 
     core.memory("Direction", Vector2(1, 0))
 

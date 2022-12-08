@@ -1,12 +1,6 @@
 import core
 from pygame.math import Vector2
 
-
-
-    # Dessin
-
-
-
 def Flamme():
 
     f1 = core.memory("Direction").rotate(180)
@@ -42,25 +36,26 @@ def DrawPlayer():
     # Contrôle
 
 def Controle():
-    Vmax = 20
+    Vmax = 10
     Vmin = 0.5
-    print(core.memory("vitesse"))
+    # print(core.memory("vitesse"))
     if core.getKeyPressList("z"):
         if core.memory("vitesse").x <= Vmax and core.memory("vitesse").x >= -Vmax and core.memory("vitesse").y <= Vmax and core.memory("vitesse").y >= -Vmax:
-                core.memory("vitesse").scale_to_length(core.memory("vitesse").length()+0.2)
-        core.memory("vitesse", core.memory("Direction"))
-        Flamme()
+            core.memory("vitesse").scale_to_length(core.memory("vitesse").length()+0.2)
+
+        # core.memory("vitesse", core.memory("vitesse") + core.memory("Direction"))
+        # Flamme()
     else :
         if core.memory("vitesse").x >= Vmin or core.memory("vitesse").x <= -Vmin and core.memory("vitesse").y >= Vmin or core.memory("vitesse").y <= -Vmin:
 
-                core.memory("vitesse").scale_to_length(core.memory("vitesse").length() - 0.4 )
+                core.memory("vitesse").scale_to_length(core.memory("vitesse").length() - 0.1 )
 
 
     if core.getKeyPressList("d"):
-        core.memory("Direction", core.memory("Direction").rotate(10))
+        core.memory("Direction", core.memory("Direction").rotate(8))
 
     if core.getKeyPressList("q"):
-        core.memory("Direction", core.memory("Direction").rotate(-10))
+        core.memory("Direction", core.memory("Direction").rotate(-8))
 
 
 # Passage par le bord de l'écran
@@ -80,3 +75,6 @@ def BordEcran():
 
 def Deplacement():
     core.memory("pos", core.memory("pos") + core.memory("vitesse"))
+
+    if core.getKeyPressList("z"):
+        core.memory("vitesse", core.memory("Direction"))
