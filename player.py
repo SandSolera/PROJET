@@ -31,31 +31,37 @@ def DrawPlayer():
     P3Bis.scale_to_length(5)
     P3 = core.memory("pos") + P3Bis
 
-    core.Draw.polygon((0, 0, 255), (P1, P2, P3), 2)
+    core.Draw.polygon((200, 160, 0), (P1, P2, P3), 2)
 
     # Contrôle
 
 def Controle():
+
     Vmax = 10
-    Vmin = 0.5
-    # print(core.memory("vitesse"))
     if core.getKeyPressList("z"):
-        if core.memory("vitesse").x <= Vmax and core.memory("vitesse").x >= -Vmax and core.memory("vitesse").y <= Vmax and core.memory("vitesse").y >= -Vmax:
-            core.memory("vitesse").scale_to_length(core.memory("vitesse").length()+0.2)
-
-        # core.memory("vitesse", core.memory("vitesse") + core.memory("Direction"))
-        # Flamme()
+        core.memory("vitesse").scale_to_length(core.memory("vitesse").length() + 0.2)
+        if core.memory("vitesse").length() > Vmax :
+            core.memory("vitesse").scale_to_length(Vmax)
+        core.memory("vitesse", core.memory("vitesse") + core.memory("Direction"))
+        Flamme()
     else :
-        if core.memory("vitesse").x >= Vmin or core.memory("vitesse").x <= -Vmin and core.memory("vitesse").y >= Vmin or core.memory("vitesse").y <= -Vmin:
-
-                core.memory("vitesse").scale_to_length(core.memory("vitesse").length() - 0.1 )
-
+        core.memory("vitesse").scale_to_length(core.memory("vitesse").length() - 0.2 )
+        if core.memory("vitesse").length() < 1:
+            core.memory("vitesse").scale_to_length(0.1)
 
     if core.getKeyPressList("d"):
-        core.memory("Direction", core.memory("Direction").rotate(8))
+        core.memory("Direction", core.memory("Direction").rotate(6))
 
     if core.getKeyPressList("q"):
-        core.memory("Direction", core.memory("Direction").rotate(-8))
+        core.memory("Direction", core.memory("Direction").rotate(-6))
+
+# Virage serre
+
+    if core.getKeyPressList("m"):
+        core.memory("Direction", core.memory("Direction").rotate(10))
+
+    if core.getKeyPressList("k"):
+        core.memory("Direction", core.memory("Direction").rotate(-10))
 
 
 # Passage par le bord de l'écran
@@ -76,5 +82,3 @@ def BordEcran():
 def Deplacement():
     core.memory("pos", core.memory("pos") + core.memory("vitesse"))
 
-    if core.getKeyPressList("z"):
-        core.memory("vitesse", core.memory("Direction"))

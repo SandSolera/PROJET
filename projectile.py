@@ -3,12 +3,13 @@ import time
 from pygame.math import Vector2
 
 def projectiles():
+
     p = Vector2(core.memory("pos"))
-    v=Vector2(core.memory("Direction"))
-    v.scale_to_length(core.memory("vitesse").length()+5)
-    r=5
-    c=(255,255,255)
-    st=time.time()
+    v = Vector2(core.memory("Direction"))
+    v.scale_to_length(core.memory("vitesse").length()+8)
+    r = 5
+    c = (255,255,255)
+    st = time.time()
 
     d = {"position": p, "vitesse": v, "rayon": r, "couleur": c, "startTime": st}
     core.memory("projectiles").append(d)
@@ -30,3 +31,9 @@ def DrawProj():
 
     for proj in core.memory("projectiles"):
         proj["position"]=proj["position"]+proj["vitesse"]
+
+def SupprProj():
+
+    for proj in core.memory("projectiles"):
+        if time.time() - proj["startTime"] > 10:
+            core.memory("projectiles").remove(proj)

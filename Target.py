@@ -1,5 +1,5 @@
 import core
-from pygame.draw import rect
+
 import random
 
 def Target():
@@ -14,3 +14,5 @@ def Target():
 def DrawTarget():
 
     core.Draw.rect((255, 0, 0), core.memory("target"))
+
+# def Collision() :

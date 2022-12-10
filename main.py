@@ -6,8 +6,11 @@ import time
 
 import random
 
+
+from Asteroid.Jeu import Jeu
+from Asteroid.Menu import Menu
 # from Asteroid.Ecran import Menu, Jeu, GameOver
-from Asteroid.Target import DrawTarget
+from Asteroid.Target import DrawTarget, Target
 from Asteroid.player import DrawPlayer, Controle, Deplacement, BordEcran, Flamme
 from Asteroid.projectile import CadenceTir, DrawProj
 
@@ -21,57 +24,30 @@ def setup():
     core.memory("vitesse", Vector2(1, 0))
 
     core.memory("Direction", Vector2(1, 0))
-
+    Target()
     core.memory("projectiles", [])
-    core.memory("target", (random.randint(0,750), random.randint(0,750), 50, 50))
+    core.memory("nbtarget",[])
     core.memory("etat",0)
 
+    core.memory("Vie", 3)
 
 def run():
 
     core.cleanScreen()
+    fondecran()
 
     # Ecran
-    # if core.memory("etat")==0:
-    #     Menu()
-    # if core.memory("etat")==1:
-    #     Jeu()
-    # if core.memory("etat")==2:
-    #     GameOver()
+    if core.memory("etat")==0:
+        Menu()
+    if core.memory("etat")==1:
+        Jeu()
+    # if core.memory("etat") == 2:
+        # GameOver()
 
+def fondecran():
+    core.memory("background", core.Texture("./Espace.png", (1, 1), 0, (800, 800)))
 
-
-
-
-    # Joueur
-
-    Deplacement()
-    Controle()
-    DrawPlayer()
-    BordEcran()
-
-    #Projectiles
-
-    CadenceTir()
-    DrawProj()
-    # Boost()
-
-    #Target
-
-    DrawTarget()
-    # Collision()
-
-    #Joueur
-
-    DrawPlayer()
-
-
-
-    #CLEAN
-
-    for proj in core.memory("projectiles"):
-        if time.time() - proj["startTime"]>10:
-            core.memory("projectiles").remove(proj)
-
-
+    if not core.memory("background").ready:
+        core.memory("background").load()
+    core.memory("background").show()
 core.main(setup, run)
