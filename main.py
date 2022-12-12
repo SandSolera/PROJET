@@ -10,9 +10,7 @@ import random
 from Asteroid.Jeu import Jeu
 from Asteroid.Menu import Menu
 # from Asteroid.Ecran import Menu, Jeu, GameOver
-from Asteroid.Target import DrawTarget, Target
-from Asteroid.player import DrawPlayer, Controle, Deplacement, BordEcran, Flamme
-from Asteroid.projectile import CadenceTir, DrawProj
+
 
 
 def setup():
@@ -22,14 +20,17 @@ def setup():
 
     core.memory("pos", Vector2(400, 400))
     core.memory("vitesse", Vector2(1, 0))
-
     core.memory("Direction", Vector2(1, 0))
-    Target()
+    core.memory("target", [])
     core.memory("projectiles", [])
-    core.memory("nbtarget",[])
     core.memory("etat",0)
-
+    core.memory("temps", [])
+    core.memory("difficulte", 1)
     core.memory("Vie", 3)
+    core.memory("point", 0)
+    core.memory("timer", 0)
+    core.memory("Tdiff", 30)
+
 
 def run():
 

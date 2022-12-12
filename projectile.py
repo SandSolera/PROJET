@@ -11,8 +11,8 @@ def projectiles():
     c = (255,255,255)
     st = time.time()
 
-    d = {"position": p, "vitesse": v, "rayon": r, "couleur": c, "startTime": st}
-    core.memory("projectiles").append(d)
+    dp = {"position": p, "vitesse": v, "rayon": r, "couleur": c, "startTime": st}
+    core.memory("projectiles").append(dp)
 
 def CadenceTir():
 
@@ -35,5 +35,19 @@ def DrawProj():
 def SupprProj():
 
     for proj in core.memory("projectiles"):
-        if time.time() - proj["startTime"] > 10:
+        if time.time() - proj["startTime"] > 2:
             core.memory("projectiles").remove(proj)
+
+def BordEcranProj():
+    for proj in core.memory("projectiles"):
+        if proj["position"].y < 0:
+            proj["position"].y = core.WINDOW_SIZE[1]
+
+        if proj["position"].x < 0:
+            proj["position"].x = core.WINDOW_SIZE[1]
+
+        if proj["position"].y > core.WINDOW_SIZE[1]:
+            proj["position"].y = 0
+
+        if proj["position"].x > core.WINDOW_SIZE[1]:
+            proj["position"].x = 0

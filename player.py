@@ -33,6 +33,7 @@ def DrawPlayer():
 
     core.Draw.polygon((200, 160, 0), (P1, P2, P3), 2)
 
+
     # Contrôle
 
 def Controle():
@@ -66,7 +67,7 @@ def Controle():
 
 # Passage par le bord de l'écran
 
-def BordEcran():
+def BordEcranPlayer():
     if core.memory("pos").y < 0:
         core.memory("pos").y = core.WINDOW_SIZE[1]
 

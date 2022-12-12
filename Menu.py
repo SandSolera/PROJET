@@ -12,8 +12,6 @@ def Menu():
     core.Draw.text((255, 255, 255), "K et M : Direction Avancé",(core.WINDOW_SIZE[1] / 2 - 165, core.WINDOW_SIZE[1] / 2 + 150))
 
     if core.getKeyPressList("SPACE"):
-        core.memory("vie", 3)
-        core.memory("difficulte", 0)
         core.memory("etat", 1)
     else:
         pass
