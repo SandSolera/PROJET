@@ -4,11 +4,11 @@ import core
 
 def GameOver():
 
-    core.Draw.text((255, 255, 255), "GameOver", (325,350))
+    core.Draw.text((255, 255, 255), "! Game Over !", (225,350),50,"Showcard gothic")
 
-    core.Draw.text((255, 255, 255), "Retry", (350, 500))
-    R = Rect((340,500,100,50))
-
+    core.Draw.text((255, 255, 255), "Retry", (core.WINDOW_SIZE[1]/2 - 80, 500),50,"Showcard gothic")
+    R = Rect((320,500,167,47))
+    # core.Draw.rect((255,255,255),(320,500,165,47),1)
     if core.getMouseLeftClick():
         if R.collidepoint(core.getMouseLeftClick()):
             core.memory("etat", 1)
@@ -26,8 +26,8 @@ def GameOver():
 
 
 
-    core.Draw.text((255, 255, 255), "Menu", (350, 550), 120)
-    M = Rect((340, 550, 100, 50))
+    core.Draw.text((255, 255, 255), "Menu", (core.WINDOW_SIZE[1]/2 - 70, 550), 50, "Showcard gothic")
+    M = Rect((320,550,167,47))
     if core.getMouseLeftClick():
         if M.collidepoint(core.getMouseLeftClick()):
             core.memory("etat", 0)

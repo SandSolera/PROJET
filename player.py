@@ -38,7 +38,7 @@ def DrawPlayer():
 
 def Controle():
 
-    Vmax = 2 * core.memory("difficulte")
+    Vmax = 4 * core.memory("difficulte")
     if core.getKeyPressList("z"):
         core.memory("vitesse").scale_to_length(core.memory("vitesse").length() + 0.2)
         if core.memory("vitesse").length() > Vmax :
