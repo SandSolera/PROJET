@@ -4,6 +4,7 @@ import core
 
 from Asteroid.Difficulté import difficulte
 from Asteroid.Target import DrawTarget, collisionproj, CreationTarget, BordEcranTarget, collisionplayer, reset
+from Asteroid.Vie import Vie
 from Asteroid.player import Deplacement, Controle, DrawPlayer, BordEcranPlayer
 from Asteroid.projectile import CadenceTir, DrawProj, SupprProj, BordEcranProj
 
@@ -13,10 +14,13 @@ def Jeu():
 
     #Affichage
 
-    # core.memory("timer", time.time()-core.memory("startTime"))
-    # core.Draw.text((255, 255, 255), "Score : ", str(core.memory("point")),(100,100))
-    # core.Draw.text((255, 255, 255), "Temps : ", str(core.memory("timer")),(100,200))
-    # core.Draw.text((255, 255, 255), "Nombre de vies : ", str(core.memory("Vie")), (100, 300))
+    core.Draw.text((255, 255, 255), "Score : ",(0,0),15)
+    core.Draw.text((255, 255, 255), str(core.memory("point")), (105, 0),15)
+    core.Draw.text((255, 255, 255), "Temps : ", (200,0), 15)
+    core.Draw.text((255,255,255),str(int(core.memory("timer"))),(315,0), 15)
+    core.Draw.text((255, 255, 255), "Vies restantes : ", (400, 0), 15)
+
+    Vie()
 
 
     # Joueur
@@ -50,6 +54,11 @@ def Jeu():
 
     difficulte()
 
+    if core.memory("Vie") == 0:
+        core.memory("etat", 2)
+
+    if core.getKeyPressList("ESCAPE"):
+        core.memory("etat, 0")
 
 
 
