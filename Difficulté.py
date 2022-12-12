@@ -4,10 +4,6 @@ import core
 
 def difficulte() :
 
-    print(core.memory("timer"), core.memory("temps"))
-    print(core.memory("difficulte"))
-
-
     if core.memory("etat") == 1:
         t = time.time()
         core.memory("temps").append(t)

@@ -6,7 +6,7 @@ import time
 
 import random
 
-
+from Asteroid.GameOver import GameOver
 from Asteroid.Jeu import Jeu
 from Asteroid.Menu import Menu
 # from Asteroid.Ecran import Menu, Jeu, GameOver
@@ -23,6 +23,7 @@ def setup():
     core.memory("Direction", Vector2(1, 0))
     core.memory("target", [])
     core.memory("projectiles", [])
+    core.memory("CadenceTir", 1)
     core.memory("etat",0)
     core.memory("temps", [])
     core.memory("difficulte", 1)
@@ -36,14 +37,16 @@ def run():
 
     core.cleanScreen()
     fondecran()
-
+    print(core.memory("etat"))
     # Ecran
-    if core.memory("etat")==0:
+    if core.memory("etat") == 0:
+        setup()
         Menu()
-    if core.memory("etat")==1:
+    if core.memory("etat") == 1:
         Jeu()
-    # if core.memory("etat") == 2:
-        # GameOver()
+
+    if core.memory("etat") == 2:
+        GameOver()
 
 def fondecran():
     core.memory("background", core.Texture("./Espace.png", (1, 1), 0, (800, 800)))
@@ -51,4 +54,5 @@ def fondecran():
     if not core.memory("background").ready:
         core.memory("background").load()
     core.memory("background").show()
+
 core.main(setup, run)

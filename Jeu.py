@@ -64,7 +64,7 @@ def Jeu():
         core.memory("etat", 2)
 
     if core.getKeyPressList("ESCAPE"):
-        core.memory("etat, 0")
+        core.memory("etat", 0)
 
 
 

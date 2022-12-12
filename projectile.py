@@ -19,10 +19,25 @@ def CadenceTir():
     if core.getKeyPressList("SPACE"):
 
         if len(core.memory("projectiles"))>0:
-            if time.time()-core.memory("projectiles")[-1]["startTime"] > 1:
+            if time.time()-core.memory("projectiles")[-1]["startTime"] > core.memory("CadenceTir"):
                 projectiles()
         else:
             projectiles()
+
+    if core.memory("point") > 50 :
+
+        core.memory("CadenceTir", 0.8)
+
+    if core.memory("point") > 100 :
+
+        core.memory("CadenceTir", 0.6)
+
+    if core.memory("point") > 150 :
+
+        core.memory("CadenceTir", 0.4)
+
+
+
 
 def DrawProj():
 

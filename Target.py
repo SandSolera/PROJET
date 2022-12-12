@@ -11,7 +11,7 @@ def Target():
     h = 50
     st = time.time()
     c = (255, 0, 0)
-    v = Vector2(random.uniform(-3,3), random.uniform(-3,3)) # attention vitesse doit etre différent de 0
+    v = Vector2(random.uniform(-3*core.memory("difficulte"),3*core.memory("difficulte")), random.uniform(-3*core.memory("difficulte"),3*core.memory("difficulte"))) # attention vitesse doit etre différent de 0
 
     dt = {"position": Vector2(x, y), "dimension": Vector2(l,h), "startTime": st, "couleur": c, "vitesse": v}
     core.memory("target").append(dt)
@@ -19,7 +19,7 @@ def Target():
 
 def CreationTarget():
     if len(core.memory("target")) > 0:
-        if time.time() - core.memory("target")[-1]["startTime"] > 10:
+        if time.time() - core.memory("target")[-1]["startTime"] > 5 / core.memory("difficulte"):
             Target()
     else:
         while len(core.memory("target")) < 5 :

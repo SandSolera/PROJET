@@ -58,7 +58,7 @@ def Vie():
 
         P4Bis = Vector2(0, -1).rotate(90)
         P4Bis.scale_to_length(5)
-        P4 = (650, 28) + P4Bis
+        P4 = (110, 130) + P4Bis
 
         P5Bis = Vector2(0, -1)
         P5Bis.scale_to_length(20)
